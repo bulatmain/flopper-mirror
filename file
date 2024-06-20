@@ -1,0 +1,33 @@
+[DeclarationFunc(
+    ID(f), 
+    Lambda (
+        [ArgumentReal(ID(n))], 
+        [IfElse (
+            Or([
+                Equal([
+                    ID(n); 
+                    LiteralReal(0)
+                ]); 
+                Equal([
+                    ID(n); 
+                    LiteralReal(1)
+                ])]
+            ), 
+            [LiteralReal(1)], 
+            [
+                Multiply([
+                    ID(n); 
+                    Call(
+                        ID(factorial), 
+                        [
+                            Minus([
+                                ID(n); 
+                                LiteralReal(1)]
+                            )
+                        ]
+                    )
+                ])
+            ]
+        )
+    ]
+))]

@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>fp_compiler_lab_flopper</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="Flopper\Values.fs"/>
+        <Compile Include="Flopper\Tokens\Tokens.fs"/>
+        <Compile Include="Flopper\Tokens\BuiltInFuncs.fs"/>
+        <Compile Include="Flopper\Tokens\ID.fs"/>
+        <Compile Include="Flopper\Tokens\Declarations.fs"/>
+        <Compile Include="Flopper\Tokens\Arguments.fs"/>
+        <Compile Include="Flopper\Tokens\Literals.fs"/>
+        <Compile Include="Flopper\Tokens\Call.fs"/>
+        <Compile Include="Flopper\Tokens\Lambda.fs"/>
+        <Compile Include="Flopper\Tokens\Operators.fs"/>
+        <Compile Include="Flopper\Tokens\IfElse.fs"/>
+        <Compile Include="Flopper\Parser.fs"/>
+        <Compile Include="Flopper\Interpreter.fs"/>
+        <Compile Include="Flopper\Program.fs"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FParsec" Version="2.0.0-beta2"/>
+    </ItemGroup>
+
+</Project>

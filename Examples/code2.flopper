@@ -1,0 +1,10 @@
+func f = lambda (real n) {
+    func g = lambda () {
+        print(n);
+        f(n + 1)
+    }
+};
+
+func cnt = f(0);
+func cnt = cnt();
+func cnt = cnt()

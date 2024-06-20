@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flopper</title>
+    <style>
+        body {
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+            color: #F8F8F2;
+            background-color: #282A36;
+            font-family: Calibri, sans-serif;
+            line-height: 30px;
+        }
+
+        code {
+            font-size: 14px;
+            font-family: "Courier New", Courier, monospace;
+            background-color: #44475A;
+            border-radius: 4px;
+            padding: 3px;    
+        }
+        pre {
+            line-height: 23px;
+            padding: 10px;
+            background-color: #44475A;
+            border-radius: 10px;
+            width: 70%;
+            font-family: Courier, monospace;
+            max-height: none;
+            text-wrap: wrap;
+        }
+
+        .keyword {
+            color: #FF79C6;
+
+        }
+        .operator {
+            color: #FF79C6;
+        }
+        .real {
+            color: #BD93F9;
+        }
+        .bool {
+            color: #BD93F9;
+        }
+        .call {
+            color: #8BE9FD;
+        }
+        .string {
+            color: #F1FA8C;
+        }
+        .func {
+            color: #50FA7B;
+        }
+        .arg {
+            color: #FFB86C;
+        }
+        td, th {
+            padding: 10px;
+        }
+        ::selection {
+            background-color: #6272A4; /* Цвет фона выделения */
+        }
+    </style>
+</head>
+<body>
+<h1 id="-flopper">Интерпретируемый язык программирования Flopper</h1>
+<p>Интерпретатор языка написан на языке программирования <em>F#</em></p>
+<h2 id="-authors">Авторы</h2>
+<table border="solid">
+    <thead>
+    <tr>
+        <th style="text-align:center">Имя</th>
+        <th style="text-align:center">Роль в проекте</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td style="text-align:center">Ахметшин Булат</td>
+        <td style="text-align:center">Разработчик парсера</td>
+    </tr>
+    <tr>
+        <td style="text-align:center">Теребаев Кирилл</td>
+        <td style="text-align:center">Разработчик интерпретатора, технический писатель</td>
+    </tr>
+    <tr>
+        <td style="text-align:center">Шипилов Кирилл</td>
+        <td style="text-align:center">Разработчик интерпретатора, обработка ошибок</td>
+    </tr>
+    </tbody>
+</table>
+<h2 id="-ability">Реализованные возможности</h2>
+<p>В языке реализованы:</p>
+<ul>
+    <li>Типизация. Реализованные типы:<ul>
+        <li><code>real</code> (целое число или число с плавающей точкой);</li>
+        <li><code>string</code> (строка);</li>
+        <li><code>bool</code> (логическое значение);</li>
+    </ul>
+    </li>
+    <li>Операторы:<ul>
+        <li>Арифметические операторы (<code>+, -, *, /, //</code>);</li>
+        <li>Логические операторы (<code>&amp;, /</code>);</li>
+        <li>Операторы сравнения (<code>&gt;, &gt;=, &lt;, &lt;=, ==, !=</code>);</li>
+    </ul>
+    </li>
+    <li>Функции;</li>
+    <li>Встроенные функции:<ul>
+        <li><code>read_real()</code> - возвращает значение real, полученное из потока ввода;</li>
+        <li><code>read_string()</code> - возвращает значение string, полученное из потока ввода;</li>
+        <li><code>print(\&lt;expr_1\&gt;, ..., \&lt;expr_n\&gt;)</code> - отправляет в поток вывода результаты
+            введенных выражений</li>
+    </ul>
+    </li>
+    <li>Рекурсивный вызов функций;</li>
+    <li>Замыкание;</li>
+    <li>Обработка ошибок (валидация названий переменных, валидация ввода).</li>
+</ul>
+<h2 id="-examples">Примеры</h2>
+<h3 id="-var_declaration">Объявление переменных</h3>
+<pre><span class="keyword">real</span><span class="id"> a</span> <span class="operator">=</span> <span class="real">5</span>;
+<span class="keyword">real</span><span class="id"> b</span> <span class="operator">=</span> <span class="real">10.5</span>;
+<span class="keyword">real</span><span class="id"> c</span> <span class="operator">=</span> <span class="func">read_real</span><span class="call">()</span>;
+<span class="keyword">string</span><span class="id"> d</span> <span class="operator">=</span> <span class="string">"something"</span>;
+<span class="keyword">string</span><span class="id"> e</span> <span class="operator">=</span> <span class="func">read_string</span><span class="call">()</span>;
+<span class="keyword">bool</span><span class="id"> f</span> <span class="operator">=</span> <span class="bool">true</span>;
+</pre>
+<h3 id="-func_declaration">Объявление функций</h3>
+<pre><span class="keyword">func</span> <span class="func">increment</span> <span class="operator">=</span> <span class="keyword">lambda</span> (<span class="keyword">real</span> <span class="arg">n</span>) {
+    <span class="arg">n</span> <span class="operator">+</span> <span class="real">1</span>
+};</pre><h3 id="-factorial">Пример факториала</h3>
+<pre><span class="keyword">func</span> <span class="func">factorial</span> <span class="operator">=</span> <span class="keyword">lambda</span> (<span class="keyword">real</span> <span class="arg">n</span>) {
+    <span class="keyword">if</span> (<span class="arg">n</span> <span class="operator">==</span> <span class="real">0</span> <span class="operator">|</span> <span class="arg">n</span> <span class="operator">==</span> <span class="real">1</span>) {
+        <span class="real">1</span>
+    } <span class="keyword">else</span> {
+        <span class="arg">n</span> <span class="operator">*</span> <span class="func">factorial</span><span class="call">(</span><span class="arg">n</span> <span class="operator">-</span> <span class="real">1</span><span class="call">)</span>
+    }
+};
+
+<span class="keyword">real</span><span class="id"> n</span> <span class="operator">=</span> <span class="func">read_real</span><span class="call">()</span>;
+<span class="func">print</span><span class="call">(</span><span class="func">factorial</span><span class="call">(</span>n <span class="operator">-</span> <span class="real">1</span><span class="call">)</span>, <span class="func">factorial</span><span class="call">(</span>n<span class="call">)</span>, <span class="func">factorial</span><span class="call">(</span>n <span class="operator">+</span> <span class="real">1</span><span class="call">)</span><span class="call">)</span>
+</pre><h3 id="-closure">Пример счетчика с использованием замыкания</h3>
+<pre><span class="keyword">func</span> <span class="func">f</span> <span class="operator">=</span> <span class="keyword">lambda</span> (<span class="keyword">real</span> <span class="arg">n</span>) {
+    <span class="keyword">func</span> <span class="func">g</span> <span class="operator">=</span> <span class="keyword">lambda</span> () {
+        <span class="func">print</span><span class="call">(</span><span class="arg">n</span><span class="call">)</span>;
+        <span class="func">f</span><span class="call">(</span><span class="arg">n</span> <span class="operator">+</span> <span class="real">1</span><span class="call">)</span>
+    }
+};
+
+<span class="keyword">func</span> <span class="func">cnt</span> <span class="operator">=</span> <span class="func">f</span><span class="call">(</span><span class="real">0</span><span class="call">)</span>;
+<span class="keyword">func</span> <span class="func">cnt</span> <span class="operator">=</span> <span class="func">cnt</span><span class="call">()</span>;
+<span class="keyword">func</span> <span class="func">cnt</span> <span class="operator">=</span> <span class="func">cnt</span><span class="call">()</span>
+</pre><h2 id="-interpreter">Описание интерпретатора</h2>
+<p>Интерпретация происходит в два этапа:</p>
+<ul>
+    <li>Преобразование кода в набор токенов. В нашем проекте для этого используется библиотека
+        <code>FParsec</code>. Реализацию парсера можно увидеть в файле <code>Parser.fs</code>.</li>
+    <li>Для выполнения мы реализовали абстрактный класс <code>Tokens</code> с методом <code>Eval</code> и
+        имплементировали метод для всех дочерних классов. Для хранения переменных
+        мы использовали <code>Map&lt;string, Value&gt;</code>. Сами реализации токенов и метода <code>Eval</code> для них можно увидеть в директории <code>Tokens</code>.</li>
+</ul>
+<p>Запуск самого интерпретатора происходит из файла <code>Program.fs</code>.</p>
+
+</body>
+</html>

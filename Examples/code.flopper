@@ -1,0 +1,11 @@
+func factorial = lambda (real n) {
+    if (n <= 1) {
+        1
+    } else {
+        n * factorial(n - 1)
+    }
+};
+
+print("Please, enter n: ");
+real n = read_real();
+print(factorial(6), factorial(1), factorial(n))
